@@ -346,20 +346,56 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					<footer id="footer">
 						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
-<p>Visitas: <span id="visit-count">--</span></p>
-
 <script>
 (async () => {
   const endpoint = "https://fhtwpjgydb.execute-api.us-east-1.amazonaws.com/contador";
   const el = document.getElementById("visit-count");
 
+  // Si no existe el elemento, abortamos silenciosamente (pero podemos loguear)
+  if (!el) {
+    console.warn("Elemento #visit-count no encontrado.");
+    return;
+  }
+
+  // Timeout para la petición (por ejemplo 6s)
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6000);
+
   try {
-    const res = await fetch(endpoint);
+    const res = await fetch(endpoint, { signal: controller.signal });
+
+    if (!res.ok) {
+      // Puedes mostrar un mensaje más descriptivo según res.status
+      console.error("Respuesta no OK del contador:", res.status, res.statusText);
+      el.textContent = "—";
+      return;
+    }
+
+    // Intentamos parsear JSON
     const data = await res.json();
-    el.textContent = data.count ?? "?";
+
+    // Validamos el contenido esperado
+    const count = (data && (typeof data.count === "number" || /^\d+$/.test(String(data.count))))
+      ? Number(data.count)
+      : null;
+
+    if (count === null || Number.isNaN(count)) {
+      console.warn("Formato inesperado de respuesta del contador:", data);
+      el.textContent = "?";
+      return;
+    }
+
+    // Formatear número según local (opcional)
+    el.textContent = new Intl.NumberFormat().format(count);
   } catch (err) {
-    console.error("Error contador:", err);
+    if (err.name === "AbortError") {
+      console.error("Request timeout al obtener contador de visitas");
+    } else {
+      console.error("Error al obtener contador:", err);
+    }
     el.textContent = "—";
+  } finally {
+    clearTimeout(timeout);
   }
 })();
 </script>
@@ -378,6 +414,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
 
