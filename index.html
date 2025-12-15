@@ -18,23 +18,7 @@
 			<div id="wrapper">
 
 				<!-- Header -->
-<p>Visitas: <span id="visit-count">--</span></p>
 
-<script>
-(async () => {
-  const endpoint = "https://fhtwpjgydb.execute-api.us-east-1.amazonaws.com/contador";
-  const el = document.getElementById("visit-count");
-
-  try {
-    const res = await fetch(endpoint);
-    const data = await res.json();
-    el.textContent = data.count ?? "?";
-  } catch (err) {
-    console.error("Error contador:", err);
-    el.textContent = "—";
-  }
-})();
-</script>
 					<header id="header">
 						<div class="logo">
 							<span class="icon fa-gem"></span>
@@ -362,6 +346,23 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					<footer id="footer">
 						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
+				<p>Visitas: <span id="visit-count">--</span></p>
+
+<script>
+(async () => {
+  const endpoint = "https://fhtwpjgydb.execute-api.us-east-1.amazonaws.com/contador";
+  const el = document.getElementById("visit-count");
+
+  try {
+    const res = await fetch(endpoint);
+    const data = await res.json();
+    el.textContent = data.count ?? "?";
+  } catch (err) {
+    console.error("Error contador:", err);
+    el.textContent = "—";
+  }
+})();
+</script>
 
 			</div>
 
@@ -377,5 +378,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	</body>
 </html>
+
 
 
