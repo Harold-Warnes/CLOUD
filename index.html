@@ -317,5 +317,23 @@
             </section>
         </main>
     </div>
+    <p>Visitas: <span id="visit-count">--</span></p>
+
+<script>
+(async () => {
+  const endpoint = "https://fhtwpjgydb.execute-api.us-east-1.amazonaws.com/contador";
+  const el = document.getElementById("visit-count");
+
+  try {
+    const res = await fetch(endpoint);
+    const data = await res.json();
+    el.textContent = data.count ?? "?";
+  } catch (err) {
+    console.error("Error contador:", err);
+    el.textContent = "—";
+  }
+})();
+</script>
 </body>
 </html>
+
