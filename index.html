@@ -40,17 +40,6 @@
             grid-template-columns: 300px 1fr;
         }
 
-        /* CONTADOR */
-        .cv-visit-counter {
-            grid-column: 1 / -1;
-            background-color: #f8fafc;
-            color: #334155;
-            padding: 0.6rem 1.2rem;
-            font-size: 0.85rem;
-            text-align: right;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
         /* Header / Sidebar */
         .sidebar {
             background-color: #1e293b;
@@ -105,6 +94,12 @@
             font-size: 0.9rem;
         }
 
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--primary);
+        }
+
         .sidebar-section {
             margin-bottom: 2.5rem;
         }
@@ -148,6 +143,7 @@
 
         .timeline-item {
             margin-bottom: 2rem;
+            position: relative;
         }
 
         .timeline-header {
@@ -160,6 +156,7 @@
         .position {
             font-weight: 700;
             font-size: 1.1rem;
+            color: var(--text-dark);
         }
 
         .company {
@@ -200,71 +197,130 @@
     </style>
 </head>
 <body>
+    <script> (async () => { const endpoint = "https://fhtwpjgydb.execute-api.us-east-1.amazonaws.com/contador"; const el = document.getElementById("visit-count"); try { const res = await fetch(endpoint); const data = await res.json(); el.textContent = data.count ?? "?"; } catch (err) { console.error("Error contador:", err); el.textContent = "—"; } })();
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile-header">
+                <div class="profile-initials">HW</div>
+                <h1 class="name">Harold Warnes</h1>
+                <p class="title">Cloud Engineer</p>
+            </div>
 
-<div class="container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <span>harold.warnes@email.com</span>
+                </div>
+                <div class="contact-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    <span>+34 600 000 000</span>
+                </div>
+                <div class="contact-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span>Barcelona, España</span>
+                </div>
+            </div>
 
-    <!-- CONTADOR DENTRO DEL CV -->
-    <div class="cv-visit-counter">
-        Visitas al CV: <span id="visit-count">--</span>
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Skills</h2>
+                <span class="skill-tag">AWS / Azure</span>
+                <span class="skill-tag">Terraform</span>
+                <span class="skill-tag">Kubernetes</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Python / Bash</span>
+                <span class="skill-tag">CI/CD Pipelines</span>
+                <span class="skill-tag">Linux Administration</span>
+                <span class="skill-tag">SQL / NoSQL</span>
+            </div>
+
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Idiomas</h2>
+                <div class="contact-item">
+                    <span>Español (Nativo)</span>
+                </div>
+                <div class="contact-item">
+                    <span>Inglés (C1 - Avanzado)</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="section">
+                <h2 class="section-title">Perfil Profesional</h2>
+                <p class="description">
+                    Ingeniero Cloud altamente motivado con experiencia en diseño, implementación y mantenimiento de infraestructuras escalables en la nube. Especializado en automatización mediante IaC (Terraform) y orquestación de contenedores. Apasionado por las mejores prácticas DevOps y la optimización de costes y rendimiento. Busco aportar valor en proyectos desafiantes utilizando tecnologías punteras.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Experiencia Laboral</h2>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="position">Senior Cloud Engineer</div>
+                            <div class="company">Tech Solutions S.L.</div>
+                        </div>
+                        <div class="date">2021 - Presente</div>
+                    </div>
+                    <div class="description">
+                        <ul>
+                            <li>Liderazgo en la migración de aplicaciones monolíticas a microservicios en AWS (EKS).</li>
+                            <li>Implementación de pipelines de CI/CD con Jenkins y GitHub Actions, reduciendo el tiempo de despliegue en un 60%.</li>
+                            <li>Gestión de infraestructura como código utilizando Terraform para múltiples entornos (Dev, Staging, Prod).</li>
+                            <li>Optimización de costes cloud logrando un ahorro del 25% anual.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="position">DevOps Engineer</div>
+                            <div class="company">Innovación Digital</div>
+                        </div>
+                        <div class="date">2018 - 2021</div>
+                    </div>
+                    <div class="description">
+                        <ul>
+                            <li>Administración de servidores Linux y monitorización con Prometheus y Grafana.</li>
+                            <li>Automatización de tareas rutinarias mediante scripting en Python y Bash.</li>
+                            <li>Despliegue y mantenimiento de bases de datos relacionales y NoSQL.</li>
+                            <li>Colaboración estrecha con equipos de desarrollo para mejorar la calidad del código y los tests.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Educación</h2>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="position">Grado en Ingeniería Informática</div>
+                            <div class="company">Universidad Politécnica</div>
+                        </div>
+                        <div class="date">2014 - 2018</div>
+                    </div>
+                    <p class="description">Especialidad en Computación y Sistemas Inteligentes.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Certificaciones</h2>
+                <div class="description">
+                    <ul>
+                        <li>AWS Certified Solutions Architect - Professional</li>
+                        <li>HashiCorp Certified: Terraform Associate</li>
+                        <li>Certified Kubernetes Administrator (CKA)</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
     </div>
+    <p>Visitas: <span id="visit-count">--</span></p>
 
-    <!-- TODO LO DEMÁS ES TU CV ORIGINAL -->
-    <aside class="sidebar">
-        <div class="profile-header">
-            <div class="profile-initials">HW</div>
-            <h1 class="name">Harold Warnes</h1>
-            <p class="title">Cloud Engineer</p>
-        </div>
 
-        <div class="contact-info">
-            <div class="contact-item">harold.warnes@email.com</div>
-            <div class="contact-item">+34 600 000 000</div>
-            <div class="contact-item">Barcelona, España</div>
-        </div>
-
-        <div class="sidebar-section">
-            <h2 class="sidebar-title">Skills</h2>
-            <span class="skill-tag">AWS / Azure</span>
-            <span class="skill-tag">Terraform</span>
-            <span class="skill-tag">Kubernetes</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Python / Bash</span>
-            <span class="skill-tag">CI/CD Pipelines</span>
-            <span class="skill-tag">Linux Administration</span>
-            <span class="skill-tag">SQL / NoSQL</span>
-        </div>
-
-        <div class="sidebar-section">
-            <h2 class="sidebar-title">Idiomas</h2>
-            <div class="contact-item">Español (Nativo)</div>
-            <div class="contact-item">Inglés (C1 - Avanzado)</div>
-        </div>
-    </aside>
-
-    <main class="main-content">
-        <!-- SECCIONES ORIGINALES -->
-        <!-- Perfil, experiencia, educación, certificaciones -->
-        <!-- SIN MODIFICAR -->
-    </main>
-
-</div>
-
-<!-- SCRIPT ORIGINAL -->
-<script>
-(async () => {
-  const endpoint = "https://fhtwpjgydb.execute-api.us-east-1.amazonaws.com/contador";
-  const el = document.getElementById("visit-count");
-
-  try {
-    const res = await fetch(endpoint);
-    const data = await res.json();
-    el.textContent = data.count ?? "?";
-  } catch (err) {
-    console.error("Error contador:", err);
-    el.textContent = "—";
-  }
-})();
 </script>
-
 </body>
 </html>
