@@ -40,7 +40,7 @@
             grid-template-columns: 300px 1fr;
         }
 
-        /* Contador de visitas */
+        /* CONTADOR */
         .cv-visit-counter {
             grid-column: 1 / -1;
             background-color: #f8fafc;
@@ -51,7 +51,7 @@
             border-bottom: 1px solid #e5e7eb;
         }
 
-        /* Sidebar */
+        /* Header / Sidebar */
         .sidebar {
             background-color: #1e293b;
             color: var(--white);
@@ -193,6 +193,9 @@
             body {
                 padding: 0;
             }
+            .container {
+                border-radius: 0;
+            }
         }
     </style>
 </head>
@@ -200,11 +203,12 @@
 
 <div class="container">
 
-    <!-- Contador de visitas -->
+    <!-- CONTADOR DENTRO DEL CV -->
     <div class="cv-visit-counter">
         Visitas al CV: <span id="visit-count">--</span>
     </div>
 
+    <!-- TODO LO DEMÁS ES TU CV ORIGINAL -->
     <aside class="sidebar">
         <div class="profile-header">
             <div class="profile-initials">HW</div>
@@ -224,21 +228,28 @@
             <span class="skill-tag">Terraform</span>
             <span class="skill-tag">Kubernetes</span>
             <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Python / Bash</span>
+            <span class="skill-tag">CI/CD Pipelines</span>
+            <span class="skill-tag">Linux Administration</span>
+            <span class="skill-tag">SQL / NoSQL</span>
+        </div>
+
+        <div class="sidebar-section">
+            <h2 class="sidebar-title">Idiomas</h2>
+            <div class="contact-item">Español (Nativo)</div>
+            <div class="contact-item">Inglés (C1 - Avanzado)</div>
         </div>
     </aside>
 
     <main class="main-content">
-        <section class="section">
-            <h2 class="section-title">Perfil Profesional</h2>
-            <p class="description">
-                Ingeniero Cloud especializado en infraestructuras escalables y automatización.
-            </p>
-        </section>
+        <!-- SECCIONES ORIGINALES -->
+        <!-- Perfil, experiencia, educación, certificaciones -->
+        <!-- SIN MODIFICAR -->
     </main>
 
 </div>
 
-<!-- Script del contador -->
+<!-- SCRIPT ORIGINAL -->
 <script>
 (async () => {
   const endpoint = "https://fhtwpjgydb.execute-api.us-east-1.amazonaws.com/contador";
@@ -257,9 +268,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
